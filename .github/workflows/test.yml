@@ -1,0 +1,26 @@
+---
+    # used for running tests
+    name: tests
+    
+    on:
+      push:
+        branches: [main]
+      pull_request_target:
+        branches: [main]
+    
+    jobs:
+      pre_commit_checks:
+        runs-on: ubuntu-22.04
+        env:
+          A_TEST_SECRET: ${{ secrets.A_TEST_SECRET }}
+        steps:
+          # checks out the repo
+          - uses: actions/checkout@v4
+            with:
+              ref: ${{ github.event.pull_request.head.ref }}
+              repository: ${{ github.event.pull_request.head.repo.full_name }}
+          # run pre-commit
+          - name: Show env var
+            run: echo $A_TEST_SECRET
+
+    
