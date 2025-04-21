@@ -19,8 +19,9 @@
             with:
               ref: ${{ github.event.pull_request.head.ref }}
               repository: ${{ github.event.pull_request.head.repo.full_name }}
-          # run pre-commit
           - name: Show env var
             run: echo $A_TEST_SECRET
+          - name: Another message
+            run: cat README.md
 
     
